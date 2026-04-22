@@ -31,7 +31,7 @@ public final class GatewayDatabase_Impl extends GatewayDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `messages` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `direction` TEXT NOT NULL, `phone` TEXT NOT NULL, `message` TEXT NOT NULL, `status` TEXT NOT NULL, `customerName` TEXT, `messageId` TEXT NOT NULL, `gatewayMode` TEXT NOT NULL, `keywordMatched` TEXT, `autoReplySent` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `deliveredAt` INTEGER, `readAt` INTEGER, `supabaseLogged` INTEGER NOT NULL, `attempts` INTEGER NOT NULL)");

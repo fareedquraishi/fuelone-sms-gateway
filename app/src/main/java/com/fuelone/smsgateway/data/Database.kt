@@ -71,7 +71,7 @@ interface MessageDao {
 }
 
 // ─── Room Database ────────────────────────────────────────────────────────────
-@Database(entities = [MessageEntity::class], version = 1, exportSchema = false)
+@Database(entities = [MessageEntity::class], version = 2, exportSchema = false)
 abstract class GatewayDatabase : RoomDatabase() {
     abstract fun messageDao(): MessageDao
 

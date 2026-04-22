@@ -223,7 +223,7 @@ public final class MessageDao_Impl implements MessageDao {
   }
 
   @Override
-  public Object insert(final MessageEntity message, final Continuation<? super Long> $completion) {
+  public Object insert(final MessageEntity message, final Continuation<? super Long> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
       @Override
       @NonNull
@@ -237,11 +237,11 @@ public final class MessageDao_Impl implements MessageDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object update(final MessageEntity message, final Continuation<? super Unit> $completion) {
+  public Object update(final MessageEntity message, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -255,12 +255,12 @@ public final class MessageDao_Impl implements MessageDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
   public Object updateStatus(final String messageId, final String status, final Long deliveredAt,
-      final Continuation<? super Unit> $completion) {
+      final Continuation<? super Unit> arg3) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -297,12 +297,11 @@ public final class MessageDao_Impl implements MessageDao {
           __preparedStmtOfUpdateStatus.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg3);
   }
 
   @Override
-  public Object markRead(final long id, final long readAt,
-      final Continuation<? super Unit> $completion) {
+  public Object markRead(final long id, final long readAt, final Continuation<? super Unit> arg2) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -325,11 +324,11 @@ public final class MessageDao_Impl implements MessageDao {
           __preparedStmtOfMarkRead.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg2);
   }
 
   @Override
-  public Object markSupabaseSynced(final long id, final Continuation<? super Unit> $completion) {
+  public Object markSupabaseSynced(final long id, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -350,11 +349,11 @@ public final class MessageDao_Impl implements MessageDao {
           __preparedStmtOfMarkSupabaseSynced.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object deleteOlderThan(final long cutoff, final Continuation<? super Unit> $completion) {
+  public Object deleteOlderThan(final long cutoff, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -375,11 +374,11 @@ public final class MessageDao_Impl implements MessageDao {
           __preparedStmtOfDeleteOlderThan.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object getRecent(final Continuation<? super List<MessageEntity>> $completion) {
+  public Object getRecent(final Continuation<? super List<MessageEntity>> arg0) {
     final String _sql = "SELECT * FROM messages ORDER BY createdAt DESC LIMIT 50";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -490,11 +489,11 @@ public final class MessageDao_Impl implements MessageDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getInbox(final Continuation<? super List<MessageEntity>> $completion) {
+  public Object getInbox(final Continuation<? super List<MessageEntity>> arg0) {
     final String _sql = "SELECT * FROM messages WHERE direction = 'inbound' ORDER BY createdAt DESC LIMIT 50";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -605,11 +604,11 @@ public final class MessageDao_Impl implements MessageDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getUnreadInbox(final Continuation<? super List<MessageEntity>> $completion) {
+  public Object getUnreadInbox(final Continuation<? super List<MessageEntity>> arg0) {
     final String _sql = "SELECT * FROM messages WHERE direction = 'inbound' AND readAt IS NULL";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -720,12 +719,11 @@ public final class MessageDao_Impl implements MessageDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object countSentToday(final long startOfDay,
-      final Continuation<? super Integer> $completion) {
+  public Object countSentToday(final long startOfDay, final Continuation<? super Integer> arg1) {
     final String _sql = "SELECT COUNT(*) FROM messages WHERE direction = 'outbound' AND createdAt > ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -755,12 +753,12 @@ public final class MessageDao_Impl implements MessageDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
   public Object findByMessageId(final String messageId,
-      final Continuation<? super MessageEntity> $completion) {
+      final Continuation<? super MessageEntity> arg1) {
     final String _sql = "SELECT * FROM messages WHERE messageId = ? LIMIT 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -877,12 +875,11 @@ public final class MessageDao_Impl implements MessageDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object getPendingSupabaseSync(
-      final Continuation<? super List<MessageEntity>> $completion) {
+  public Object getPendingSupabaseSync(final Continuation<? super List<MessageEntity>> arg0) {
     final String _sql = "SELECT * FROM messages WHERE supabaseLogged = 0 ORDER BY createdAt ASC LIMIT 20";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -993,11 +990,11 @@ public final class MessageDao_Impl implements MessageDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getPendingOutbound(final Continuation<? super List<MessageEntity>> $completion) {
+  public Object getPendingOutbound(final Continuation<? super List<MessageEntity>> arg0) {
     final String _sql = "SELECT * FROM messages WHERE direction = 'outbound' AND status = 'pending' ORDER BY createdAt ASC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -1108,7 +1105,7 @@ public final class MessageDao_Impl implements MessageDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
