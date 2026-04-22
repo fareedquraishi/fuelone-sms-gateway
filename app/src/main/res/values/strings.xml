@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FuelOne SMS Gateway</string>
+    <string name="gateway_active">Gateway Active</string>
+    <string name="gateway_stopped">Gateway Stopped</string>
+    <string name="mode_wifi">WiFi</string>
+    <string name="mode_usb">USB</string>
+    <string name="mode_bluetooth">Bluetooth</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="settings_saved">Settings saved</string>
+    <string name="permission_required">SMS permissions are required</string>
+</resources>
