@@ -11,7 +11,7 @@ data class MessageEntity(
     val phone: String,
     val message: String,
     val status: String,             // sent|failed|delivered|received|pending
-    val customerName: String? = "",
+    val customerName: String? = null,
     val messageId: String = "",
     val gatewayMode: String = "",
     val keywordMatched: String? = null,
@@ -71,7 +71,7 @@ interface MessageDao {
 }
 
 // ─── Room Database ────────────────────────────────────────────────────────────
-@Database(entities = [MessageEntity::class], version = 2, exportSchema = false)
+@Database(entities = [MessageEntity::class], version = 3, exportSchema = false)
 abstract class GatewayDatabase : RoomDatabase() {
     abstract fun messageDao(): MessageDao
 

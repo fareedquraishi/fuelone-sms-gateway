@@ -334,7 +334,7 @@ class SmsGatewayService : Service() {
                 message      = req.message,
                 status       = status,
                 customerName = req.customerName ?: "",
-                messageId    = req.messageId,
+                messageId    = req.messageId ?: "",
                 gatewayMode  = prefs.connectionMode.name
             )
             db.messageDao().insert(entity)
@@ -345,7 +345,7 @@ class SmsGatewayService : Service() {
                 message      = req.message,
                 status       = status,
                 customerName = req.customerName ?: "",
-                messageId    = req.messageId,
+                messageId    = req.messageId ?: "",
                 gatewayMode  = prefs.connectionMode.name
             ))
         }
