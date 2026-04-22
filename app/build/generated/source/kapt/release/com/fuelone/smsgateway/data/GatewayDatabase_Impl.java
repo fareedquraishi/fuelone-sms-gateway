@@ -34,9 +34,9 @@ public final class GatewayDatabase_Impl extends GatewayDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `messages` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `direction` TEXT NOT NULL, `phone` TEXT NOT NULL, `message` TEXT NOT NULL, `status` TEXT NOT NULL, `customerName` TEXT NOT NULL, `messageId` TEXT NOT NULL, `gatewayMode` TEXT NOT NULL, `keywordMatched` TEXT, `autoReplySent` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `deliveredAt` INTEGER, `readAt` INTEGER, `supabaseLogged` INTEGER NOT NULL, `attempts` INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `messages` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `direction` TEXT NOT NULL, `phone` TEXT NOT NULL, `message` TEXT NOT NULL, `status` TEXT NOT NULL, `customerName` TEXT, `messageId` TEXT NOT NULL, `gatewayMode` TEXT NOT NULL, `keywordMatched` TEXT, `autoReplySent` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `deliveredAt` INTEGER, `readAt` INTEGER, `supabaseLogged` INTEGER NOT NULL, `attempts` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a40254bf768105a264b475f21661bbb0')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fa257d7f8d93d9f3e49410ddbba4368a')");
       }
 
       @Override
@@ -91,7 +91,7 @@ public final class GatewayDatabase_Impl extends GatewayDatabase {
         _columnsMessages.put("phone", new TableInfo.Column("phone", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsMessages.put("message", new TableInfo.Column("message", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsMessages.put("status", new TableInfo.Column("status", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsMessages.put("customerName", new TableInfo.Column("customerName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsMessages.put("customerName", new TableInfo.Column("customerName", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsMessages.put("messageId", new TableInfo.Column("messageId", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsMessages.put("gatewayMode", new TableInfo.Column("gatewayMode", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsMessages.put("keywordMatched", new TableInfo.Column("keywordMatched", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -112,7 +112,7 @@ public final class GatewayDatabase_Impl extends GatewayDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "a40254bf768105a264b475f21661bbb0", "4aad6f3efea0543564c55d86a388b2f2");
+    }, "fa257d7f8d93d9f3e49410ddbba4368a", "98932bdc4f5bf820aa89725c2488d453");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

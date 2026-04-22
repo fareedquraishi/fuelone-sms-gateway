@@ -333,7 +333,7 @@ class SmsGatewayService : Service() {
                 phone        = req.phone,
                 message      = req.message,
                 status       = status,
-                customerName = req.customerName,
+                customerName = req.customerName ?: "",
                 messageId    = req.messageId,
                 gatewayMode  = prefs.connectionMode.name
             )
@@ -344,7 +344,7 @@ class SmsGatewayService : Service() {
                 phone        = req.phone,
                 message      = req.message,
                 status       = status,
-                customerName = req.customerName,
+                customerName = req.customerName ?: "",
                 messageId    = req.messageId,
                 gatewayMode  = prefs.connectionMode.name
             ))

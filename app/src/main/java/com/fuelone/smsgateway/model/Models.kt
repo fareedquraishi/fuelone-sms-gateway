@@ -10,7 +10,7 @@ data class SendRequest(
     @SerializedName("phone")         val phone: String,
     @SerializedName("message")       val message: String,
     @SerializedName("message_id")    val messageId: String,
-    @SerializedName("customer_name") val customerName: String = ""
+    @SerializedName("customer_name") val customerName: String? = ""
 )
 
 // ─── Send Response (app → dashboard) ─────────────────────────────────────────
@@ -39,7 +39,7 @@ data class MessageLog(
     @SerializedName("phone")            val phone: String,
     @SerializedName("message")          val message: String,
     @SerializedName("status")           val status: String,            // sent|failed|delivered|received
-    @SerializedName("customer_name")    val customerName: String = "",
+    @SerializedName("customer_name")    val customerName: String? = "",
     @SerializedName("message_id")       val messageId: String = "",
     @SerializedName("gateway_mode")     val gatewayMode: String = "",
     @SerializedName("keyword_matched")  val keywordMatched: String? = null,

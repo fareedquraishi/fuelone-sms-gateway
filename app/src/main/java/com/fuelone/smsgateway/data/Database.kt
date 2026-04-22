@@ -11,7 +11,7 @@ data class MessageEntity(
     val phone: String,
     val message: String,
     val status: String,             // sent|failed|delivered|received|pending
-    val customerName: String = "",
+    val customerName: String? = "",
     val messageId: String = "",
     val gatewayMode: String = "",
     val keywordMatched: String? = null,
