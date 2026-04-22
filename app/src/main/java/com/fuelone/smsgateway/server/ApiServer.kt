@@ -78,8 +78,27 @@ class ApiServer(
         if (!isAuthorized(session)) return unauthorizedResponse()
 
         val body = readBody(session)
-        val req  = try {
-            gson.fromJson(body, SendRequest::class.java)
+        val req = try {
+            val jsonObj = com.google.gson.JsonParser.parseString(body).asJsonObject
+            val phone = if (jsonObj.has("phone") && !jsonObj.get("phone").isJsonNull)
+                jsonObj.get("phone").asString
+                else if (jsonObj.has("customer_mobile") && !jsonObj.get("customer_mobile").isJsonNull)
+                jsonObj.get("customer_mobile").asString
+                else ""
+            val message = if (jsonObj.has("message") && !jsonObj.get("message").isJsonNull)
+                jsonObj.get("message").asString
+                else if (jsonObj.has("message_text") && !jsonObj.get("message_text").isJsonNull)
+                jsonObj.get("message_text").asString
+                else ""
+            val messageId = if (jsonObj.has("message_id") && !jsonObj.get("message_id").isJsonNull)
+                jsonObj.get("message_id").asString
+                else if (jsonObj.has("entry_id") && !jsonObj.get("entry_id").isJsonNull)
+                jsonObj.get("entry_id").asString
+                else java.util.UUID.randomUUID().toString()
+            val customerName = if (jsonObj.has("customer_name") && !jsonObj.get("customer_name").isJsonNull)
+                jsonObj.get("customer_name").asString
+                else ""
+            SendRequest(phone = phone, message = message, messageId = messageId, customerName = customerName)
         } catch (e: Exception) {
             return jsonError(400, "Invalid JSON: ${e.message}")
         }
@@ -149,11 +168,12 @@ class ApiServer(
 
     // ─── OPTIONS (CORS Preflight) ─────────────────────────────────────────────
     private fun handleOptions(): Response {
-        val response = newFixedLengthResponse(Response.Status.OK, JSON_MIME, "{}")
+        val response = newFixedLengthResponse(Response.Status.OK, "text/plain", "")
         response.addHeader("Access-Control-Allow-Origin", "*")
-        response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        response.addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type")
-        response.addHeader("Access-Control-Max-Age", "3600")
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+        response.addHeader("Access-Control-Allow-Headers", "*")
+        response.addHeader("Access-Control-Max-Age", "86400")
+        response.addHeader("Access-Control-Allow-Credentials", "true")
         return response
     }
 
