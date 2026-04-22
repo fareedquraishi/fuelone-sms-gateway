@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.fuelone.smsgateway.app-mergeDebugResources-48:/layout/activity_settings.xml",
+        "source": "com.fuelone.smsgateway.app-main-51:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.fuelone.smsgateway.app-mergeDebugResources-48:/layout/activity_main.xml",
+        "source": "com.fuelone.smsgateway.app-main-51:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.fuelone.smsgateway.app-mergeDebugResources-48:/layout/item_inbox_message.xml",
+        "source": "com.fuelone.smsgateway.app-main-51:/layout/item_inbox_message.xml"
+    },
+    {
+        "merged": "com.fuelone.smsgateway.app-mergeDebugResources-48:/layout/item_auto_reply_rule.xml",
+        "source": "com.fuelone.smsgateway.app-main-51:/layout/item_auto_reply_rule.xml"
+    },
+    {
+        "merged": "com.fuelone.smsgateway.app-mergeDebugResources-48:/layout/activity_inbox.xml",
+        "source": "com.fuelone.smsgateway.app-main-51:/layout/activity_inbox.xml"
+    },
+    {
+        "merged": "com.fuelone.smsgateway.app-mergeDebugResources-48:/layout/dialog_add_rule.xml",
+        "source": "com.fuelone.smsgateway.app-main-51:/layout/dialog_add_rule.xml"
+    }
+]

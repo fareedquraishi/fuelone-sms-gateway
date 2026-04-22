@@ -59,6 +59,7 @@ class ApiServer(
 
         return try {
             when {
+                method == Method.OPTIONS                  -> handleOptions()
                 method == Method.POST && uri == "/send"   -> handleSend(session)
                 method == Method.GET  && uri == "/status" -> handleStatus()
                 method == Method.GET  && uri == "/inbox"  -> handleInbox()
@@ -146,6 +147,16 @@ class ApiServer(
         )))
     }
 
+    // ─── OPTIONS (CORS Preflight) ─────────────────────────────────────────────
+    private fun handleOptions(): Response {
+        val response = newFixedLengthResponse(Response.Status.OK, JSON_MIME, "{}")
+        response.addHeader("Access-Control-Allow-Origin", "*")
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        response.addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type")
+        response.addHeader("Access-Control-Max-Age", "3600")
+        return response
+    }
+
     // ─── GET / ────────────────────────────────────────────────────────────────
     private fun handleRoot(): Response {
         val info = """{
@@ -165,12 +176,17 @@ class ApiServer(
         return authHeader == "Bearer $secretKey"
     }
 
-    private fun unauthorizedResponse(): Response =
-        newFixedLengthResponse(
+    private fun unauthorizedResponse(): Response {
+        val response = newFixedLengthResponse(
             Response.Status.UNAUTHORIZED,
             JSON_MIME,
             """{"error":"Unauthorized — invalid or missing Bearer token"}"""
         )
+        response.addHeader("Access-Control-Allow-Origin", "*")
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        response.addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type")
+        return response
+    }
 
     // ─── Helpers ──────────────────────────────────────────────────────────────
     private fun readBody(session: IHTTPSession): String {
@@ -180,13 +196,23 @@ class ApiServer(
         return String(buf, Charsets.UTF_8)
     }
 
-    private fun jsonOk(json: String): Response =
-        newFixedLengthResponse(Response.Status.OK, JSON_MIME, json)
+    private fun jsonOk(json: String): Response {
+        val response = newFixedLengthResponse(Response.Status.OK, JSON_MIME, json)
+        response.addHeader("Access-Control-Allow-Origin", "*")
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        response.addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type")
+        return response
+    }
 
-    private fun jsonError(code: Int, message: String): Response =
-        newFixedLengthResponse(
+    private fun jsonError(code: Int, message: String): Response {
+        val response = newFixedLengthResponse(
             Response.Status.lookup(code),
             JSON_MIME,
             """{"error":"$message"}"""
         )
+        response.addHeader("Access-Control-Allow-Origin", "*")
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        response.addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type")
+        return response
+    }
 }

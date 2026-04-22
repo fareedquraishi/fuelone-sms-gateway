@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvKeyword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#E8F5E9"
+        android:textColor="#2E7D32"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:minWidth="48dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvReply"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp"
+        android:textSize="13sp"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@android:drawable/ic_delete"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Delete rule"/>
+</LinearLayout>

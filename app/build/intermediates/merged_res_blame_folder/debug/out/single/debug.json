@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/layout_item_inbox_message.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/layout/item_inbox_message.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/layout_activity_main.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/drawable_circle_badge.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/drawable/circle_badge.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/layout_activity_inbox.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/layout/activity_inbox.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/layout_item_auto_reply_rule.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/layout/item_auto_reply_rule.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/mipmap-hdpi_ic_launcher.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/mipmap-hdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/layout_dialog_add_rule.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/layout/dialog_add_rule.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/layout_activity_settings.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-merged_res-49:/menu_main_menu.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-51:/menu/main_menu.xml"
+    }
+]

@@ -1,0 +1,19 @@
+/workspaces/fuelone-sms-gateway/app/src/main/AndroidManifest.xml:79: Error: This class should provide a default constructor (a public constructor with no arguments) (com.fuelone.smsgateway.bluetooth.BluetoothService) [Instantiatable]
+            android:name=".bluetooth.BluetoothService"
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspaces/fuelone-sms-gateway/app/src/main/AndroidManifest.xml:79: Error: BluetoothService must extend android.app.Service [Instantiatable]
+            android:name=".bluetooth.BluetoothService"
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Instantiatable":
+   Activities, services, broadcast receivers etc. registered in the manifest
+   file (or for custom views, in a layout file) must be "instantiatable" by
+   the system, which means that the class must be public, it must have an
+   empty public constructor, and if it's an inner class, it must be a static
+   inner class.
+
+   If you use a custom AppComponentFactory to instantiate app components
+   yourself, consider disabling this Lint issue in order to avoid false
+   positives.
+
+2 errors, 0 warnings

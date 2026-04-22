@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-mergeReleaseResources-48:/layout/dialog_add_rule.xml",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-50:/layout/dialog_add_rule.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-mergeReleaseResources-48:/layout/activity_main.xml",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-50:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-mergeReleaseResources-48:/layout/item_inbox_message.xml",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-50:/layout/item_inbox_message.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-mergeReleaseResources-48:/layout/activity_inbox.xml",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-50:/layout/activity_inbox.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-mergeReleaseResources-48:/layout/activity_settings.xml",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-50:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-mergeReleaseResources-48:/layout/item_auto_reply_rule.xml",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.fuelone.smsgateway.app-main-50:/layout/item_auto_reply_rule.xml"
+    },
+    {
+        "merged": "com.fuelone.smsgateway.app-mergeReleaseResources-48:/layout/activity_inbox.xml",
+        "source": "com.fuelone.smsgateway.app-main-50:/layout/activity_inbox.xml"
+    }
+]

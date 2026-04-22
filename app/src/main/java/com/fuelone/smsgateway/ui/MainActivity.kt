@@ -1,6 +1,8 @@
 package com.fuelone.smsgateway.ui
 
 import android.Manifest
+import android.app.role.RoleManager
+import android.content.Intent
 import android.content.*
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -73,6 +75,7 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
         checkPermissions()
+        requestSmsRole()
         startStatusPolling()
         requestBatteryOptimizationExemption()
     }
@@ -215,6 +218,27 @@ class MainActivity : AppCompatActivity() {
             .firstOrNull { !it.isLoopbackAddress && it.hostAddress?.contains('.') == true }
             ?.hostAddress ?: "0.0.0.0"
     } catch (e: Exception) { "0.0.0.0" }
+
+    private fun requestSmsRole() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val roleManager = getSystemService(RoleManager::class.java)
+            if (roleManager != null && !roleManager.isRoleHeld(RoleManager.ROLE_SMS)) {
+                val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_SMS)
+                startActivityForResult(intent, 1001)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: android.content.Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1001) {
+            if (resultCode == android.app.Activity.RESULT_OK) {
+                android.widget.Toast.makeText(this, "SMS Gateway permission granted!", android.widget.Toast.LENGTH_SHORT).show()
+            } else {
+                android.widget.Toast.makeText(this, "SMS permission denied — gateway may not work", android.widget.Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.2.2" type="incidents">
+
+    <incident
+        id="Instantiatable"
+        severity="fatal"
+        message="This class should provide a default constructor (a public constructor with no arguments) (`com.fuelone.smsgateway.bluetooth.BluetoothService`)">
+        <location
+            file="${:app*release*MAIN*sourceProvider*0*manifest*0}"
+            line="79"
+            column="27"
+            startOffset="3492"
+            endLine="79"
+            endColumn="54"
+            endOffset="3519"/>
+    </incident>
+
+    <incident
+        id="Instantiatable"
+        severity="fatal"
+        message="`BluetoothService` must extend android.app.Service">
+        <location
+            file="${:app*release*MAIN*sourceProvider*0*manifest*0}"
+            line="79"
+            column="27"
+            startOffset="3492"
+            endLine="79"
+            endColumn="54"
+            endOffset="3519"/>
+    </incident>
+
+</incidents>

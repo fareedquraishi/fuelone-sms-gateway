@@ -2,49 +2,41 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- SMS Permissions -->
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-
-    <!-- Network Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-
-    <!-- Bluetooth Permissions -->
     <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-
-    <!-- System Permissions -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
 
-    <!-- Hardware Features -->
     <uses-feature android:name="android.hardware.telephony" android:required="true" />
     <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
 
     <application
         android:name=".GatewayApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@android:drawable/ic_dialog_info"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmsGateway"
         android:usesCleartextTraffic="true"
         tools:targetApi="28">
 
-        <!-- Main Activity -->
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
@@ -55,32 +47,45 @@
             </intent-filter>
         </activity>
 
-        <!-- Settings Activity -->
         <activity
             android:name=".ui.SettingsActivity"
             android:exported="false"
             android:parentActivityName=".ui.MainActivity" />
 
-        <!-- Inbox Activity -->
         <activity
             android:name=".ui.InboxActivity"
             android:exported="false"
             android:parentActivityName=".ui.MainActivity" />
 
-        <!-- SMS Gateway Foreground Service -->
+        <activity
+            android:name=".ui.SmsPopupActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".service.SmsGatewayService"
             android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="connectedDevice" />
+            android:exported="true"
+            android:foregroundServiceType="connectedDevice"
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </service>
 
-        <!-- Bluetooth RFCOMM Service -->
-        <service
-            android:name=".bluetooth.BluetoothService"
-            android:enabled="true"
-            android:exported="false" />
-
-        <!-- Boot Receiver — auto-start on device boot -->
         <receiver
             android:name=".receiver.BootReceiver"
             android:enabled="true"
@@ -92,18 +97,27 @@
             </intent-filter>
         </receiver>
 
-        <!-- SMS Broadcast Receiver -->
         <receiver
             android:name=".receiver.SmsReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
-        <!-- SMS Sent/Delivered Status Receiver -->
+        <receiver
+            android:name=".receiver.MmsReceiver"
+            android:exported="true"
+            android:permission="android.permission.BROADCAST_WAP_PUSH">
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".receiver.SmsStatusReceiver"
             android:enabled="true"
